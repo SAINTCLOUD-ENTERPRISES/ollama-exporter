@@ -76,31 +76,31 @@ changelog:
 dockers:
   - id: amd64
     image_templates:
-      - "ghcr.io/maravexa/ollama-exporter:{{ .Tag }}-amd64"
+      - "ghcr.io/saintcloud-enterprises/ollama-exporter:{{ .Tag }}-amd64"
     dockerfile: Dockerfile.release
     use: buildx
     goarch: amd64
     build_flag_templates:
       - "--platform=linux/amd64"
       - "--label=org.opencontainers.image.version={{.Version}}"
-      - "--label=org.opencontainers.image.source=https://github.com/maravexa/ollama-exporter"
+      - "--label=org.opencontainers.image.source=https://github.com/SAINTCLOUD-ENTERPRISES/ollama-exporter"
   - id: arm64
     image_templates:
-      - "ghcr.io/maravexa/ollama-exporter:{{ .Tag }}-arm64"
+      - "ghcr.io/saintcloud-enterprises/ollama-exporter:{{ .Tag }}-arm64"
     dockerfile: Dockerfile.release
     use: buildx
     goarch: arm64
     build_flag_templates:
       - "--platform=linux/arm64"
       - "--label=org.opencontainers.image.version={{.Version}}"
-      - "--label=org.opencontainers.image.source=https://github.com/maravexa/ollama-exporter"
+      - "--label=org.opencontainers.image.source=https://github.com/SAINTCLOUD-ENTERPRISES/ollama-exporter"
 
 docker_manifests:
-  - name_template: "ghcr.io/maravexa/ollama-exporter:{{ .Tag }}"
+  - name_template: "ghcr.io/saintcloud-enterprises/ollama-exporter:{{ .Tag }}"
     image_templates:
-      - "ghcr.io/maravexa/ollama-exporter:{{ .Tag }}-amd64"
-      - "ghcr.io/maravexa/ollama-exporter:{{ .Tag }}-arm64"
-  - name_template: "ghcr.io/maravexa/ollama-exporter:latest"
+      - "ghcr.io/saintcloud-enterprises/ollama-exporter:{{ .Tag }}-amd64"
+      - "ghcr.io/saintcloud-enterprises/ollama-exporter:{{ .Tag }}-arm64"
+  - name_template: "ghcr.io/saintcloud-enterprises/ollama-exporter:latest"
     image_templates:
-      - "ghcr.io/maravexa/ollama-exporter:{{ .Tag }}-amd64"
-      - "ghcr.io/maravexa/ollama-exporter:{{ .Tag }}-arm64"
+      - "ghcr.io/saintcloud-enterprises/ollama-exporter:{{ .Tag }}-amd64"
+      - "ghcr.io/saintcloud-enterprises/ollama-exporter:{{ .Tag }}-arm64"
