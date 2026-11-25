@@ -402,6 +402,8 @@ response, live `/v1` behavior, or Jetpack/Orin. See the
 CI runs lint, race tests with a 60% coverage floor, the production vulnerability
 gate, and Linux amd64/arm64 plus Darwin arm64 compile checks. Use the Go version
 in `go.mod` and the linter version pinned in [CI](.github/workflows/ci.yaml).
+CI's lint job also fails on a production host in a test or dev default; run that
+check with `python3 -I -B tools/no_prod_default.py`.
 
 With those tools installed, run the local formatting, vet, lint and test targets:
 

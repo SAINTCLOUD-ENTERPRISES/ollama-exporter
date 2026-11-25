@@ -10,9 +10,12 @@ permissions:
 
 jobs:
   lint:
+    # Stays on GitHub-hosted runners: this repo is public, per ksc 2026-11-24.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -20,9 +23,8 @@ jobs:
 
       - uses: golangci/golangci-lint-action@ba0d7d2ec06a0ea1cb5fa41b2e4a3ab91d21278a # v9.3.0
         with:
-          version: v2.11
+          version: v2.11.4
 
-      # platform-0128's no-prod-default lint, vendored byte for byte per platform-0138.
       - name: No prod host in test or dev defaults
         run: python3 -I -B tools/no_prod_default.py
 
@@ -30,9 +32,12 @@ jobs:
         run: python3 -I -B tools/test_no_prod_default.py -q
 
   test:
+    # Stays on GitHub-hosted runners: this repo is public, per ksc 2026-11-24.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -60,9 +65,12 @@ jobs:
           path: coverage.out
 
   govulncheck:
+    # Stays on GitHub-hosted runners: this repo is public, per ksc 2026-11-24.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -86,6 +94,7 @@ jobs:
           if-no-files-found: error
 
   build-verify:
+    # Stays on GitHub-hosted runners: this repo is public, per ksc 2026-11-24.
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -97,6 +106,8 @@ jobs:
             goarch: arm64
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
